@@ -4,3 +4,4 @@ PROGRESS.md
 build/
 .idea/
 *.iml
+.secrets.baseline
