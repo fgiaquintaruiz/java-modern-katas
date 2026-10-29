@@ -1,0 +1,7 @@
+_plan/
+PROGRESS.md
+.gradle/
+build/
+.idea/
+*.iml
+.secrets.baseline
