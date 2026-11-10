@@ -38,7 +38,6 @@ public final class A02DistinctFeaturesSorted {
                     airports.stream()
                     .flatMap(airport -> airport.fleet().stream()
                             .flatMap(aircraft -> aircraft.features().stream())
-//                                    .map(Aircraft::features).flatMap(List::stream)
                     )
                     .distinct()
                     .sorted()

@@ -1,7 +1,9 @@
 package com.fgiaquinta.katas.streams.flatmap;
 
+import com.fgiaquinta.katas.domain.AircraftCategory;
 import com.fgiaquinta.katas.domain.Charter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,9 +19,15 @@ import java.util.List;
  * a nested {@code flatMap} whose inner lambda closes over the outer charter; enum {@code compareTo} as the tier comparison; cartesian-style expansion of one charter against a whole fleet.
  *
  * <h2>Internals</h2>
- * TODO after solving: explain what happens inside the pipeline, not what the code does.
+ * The outer stream hands flatMap one charter. The lambda builds an inner stream with the charter id,
+ * filtering the aircraft that have a better category than the current one, but nothing runs until
+ * the pipeline reaches toList. flatMap passes each one down to toList, and the try-with-resources
+ * closes the inner stream. toList receives the upgrade objects one by one and cannot tell which
+ * charter an upgrade came from, because at that point there is no charter lambda any more, only the
+ * charter id inside the upgrade.
  * <h2>Anchor</h2>
- * TODO after solving: one sentence, your own image from a world you know, that ties this operation to its mechanism.
+ * It behaves like a bus full of people that stops at a hotel: each person has a basic room, and the
+ * desk shows them all the other categories of rooms they can upgrade it to.
  */
 public final class A06UpgradeCandidates {
 
@@ -37,6 +45,11 @@ public final class A06UpgradeCandidates {
     }
 
     public static List<Upgrade> upgradeCandidates(List<Charter> charters) {
-        throw new UnsupportedOperationException("Not solved yet");
+        return charters.stream()
+                .flatMap(charter -> charter.origin()
+                        .fleet().stream()
+                        .filter(aircraft -> aircraft.category().compareTo(charter.aircraft().category()) > 0)
+                        .map(aircraft -> new Upgrade(charter.id(), aircraft.registration()))
+                ).toList();
     }
 }
