@@ -5,3 +5,5 @@ build/
 .idea/
 *.iml
 .secrets.baseline
+docs/realtime/*.md
+~$*.xlsx

@@ -33,15 +33,26 @@ src/main/java/com/fgiaquinta/katas/
 ├── streams/grouping/    Block B — groupingBy / partitioningBy / downstream collectors (B01–B07)
 ├── streams/reduction/   Block C — statistics and reduction (C01–C06)
 ├── functional/methodref/ Block M — the four shapes of method references (M01–M08)
+├── collections/         Block D — one JDK structure per exercise: ArrayDeque, LinkedHashMap, TreeMap, PriorityQueue... (D01–D10)
+├── language/            Block E — language internals: final, static, init order, records, sealed, capture, == (E01–E08)
+├── realtime/            timed exercises, 25-minute box, own rules in package-info (LruCache)
 ├── collectors/          custom java.util.stream.Collector implementation
 └── optional/            Optional anti-patterns: wrong vs. correct vs. why
 
 src/main/kotlin/com/fgiaquinta/katas/kt/
-└── flatmap/             Kotlin twins of A01–A03, redone after the Java version as spaced repetition
+├── flatmap/             Kotlin twins of A01–A04, redone after the Java version as spaced repetition
+├── collections/         Kotlin twins of D01–D10, each with one test aimed at the Kotlin difference
+└── language/            Kotlin twins of E01–E08
+
+docs/
+├── java-kotlin-cheat-sheet.xlsx   one row per mechanism; yellow columns are the learner's own words
+├── log/                 one Markdown log per closed exercise: attempts, hints, internals exchange, principle question
+└── realtime/            notes per timed exercise (gitignored: scores and how it felt stay local)
 ```
 
 Naming: `A01`-`A07` (flatMap), `B01`-`B07` (grouping), `C01`-`C06`
-(reduction), `M01`-`M08` (method references). Class name `<Id><PascalCaseTitle>`, e.g. `A03CitiesOfferingCategory`.
+(reduction), `M01`-`M08` (method references), `D01`-`D10` (collections),
+`E01`-`E08` (language internals). Class name `<Id><PascalCaseTitle>`, e.g. `A03CitiesOfferingCategory`.
 
 Each unsolved exercise: a javadoc statement, a method that throws
 `UnsupportedOperationException("Not solved yet")`, and a red
@@ -76,6 +87,35 @@ Git Bash:
 `PROGRESS.md` is gitignored, one entry per session. The questions the
 learner could not answer are the real syllabus for the evaluation; they
 matter more than the exercises marked done.
+
+Since 2026-11-17 every closed exercise also gets a committed log in
+`docs/log/`, written from the conversation: attempts in order, hints
+taken, the internals exchange in the learner's words, the principle
+question and each miss. It shows where the exercise was solved alone and
+where the assistant entered.
+
+## Journal
+
+One line per solved exercise, newest last. "Hints" counts directed
+hints; "explained" means the third failed attempt triggered a full
+explanation.
+
+| Date | Exercise | What it is about | How it went |
+|---|---|---|---|
+| 2026-10-29 | A01 AllRegistrations | one-to-many flatten: airports → fleets → registrations | solved alone |
+| 2026-10-29 | A02 DistinctFeaturesSorted | two nesting levels, distinct + sorted are stateful | solved alone |
+| 2026-10-29 | A03 CitiesOfferingCategory | anyMatch inside filter, Set collapses duplicate cities | solved alone; cold re-ask passed 2026-10-27 |
+| 2026-10-29 | A04 FirstElectricRegistration | findFirst short-circuit through flatMap, third airport never read | solved alone |
+| 2026-10-29 | Kotlin A01 | eager List ops vs asSequence | comparison questions only |
+| 2026-10-30 | A05 CharterExtraLines | one line per extra, charters with no extras contribute nothing | solved alone |
+| 2026-11-10 | A06 UpgradeCandidates | per charter, fleet aircraft of a strictly higher tier | one hint |
+| 2026-11-10 | Kotlin A02 | distinct + sorted in Kotlin | comparison questions only |
+| 2026-11-10 | A07 LargeAircraftWithMapMulti | mapMulti instead of flatMap, no intermediate stream | solved alone |
+| 2026-11-11 | B01 CountByCategory | groupingBy + counting; classifier, long[1] box, finisher | explained after three misses; principle: Strategy |
+| 2026-11-11 | Kotlin A04 | asSequence + flatMap + firstOrNull laziness | comparison questions only |
+| 2026-11-11 | B02 RegistrationsByCity | groupingBy + flatMapping; bucket created before downstream | two misses, then solved; principle: Decorator |
+| 2026-11-12 | realtime LruCache | LinkedHashMap access order + removeEldestEntry, 25-minute box | partial on the clock, 0 hints; finished off the clock 2026-11-17; principle: Template Method vs Strategy, composition explained after three misses ([log](docs/log/realtime-lru-cache.md)) |
+| 2026-11-17 | scaffolding | blocks D (collections) and E (language) added in Java and Kotlin, cheat sheet Collections rows, exercise logs | work mode |
 
 ## Deliverables for October
 
