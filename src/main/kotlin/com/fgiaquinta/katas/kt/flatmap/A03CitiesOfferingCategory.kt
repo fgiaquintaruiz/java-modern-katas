@@ -12,8 +12,21 @@ import com.fgiaquinta.katas.domain.AircraftCategory
  *
  * Concepts: any {} on the inner list as short-circuit; toSet() vs toHashSet().
  *
- * Internals: TODO after solving: explain what happens inside the pipeline, not what the code does.
+ * Internals:
+ * ToSet asks for the first airport, then it is filtered by a contained aircraft category matching, then the map gets the city
+ * of that airport and the city name is added to the set
+ * Any looks at 2 aircraft of 5 if the second one matches and then the pipeline goes back to the filter for the next airport.
+ * When having 2 airports in the same city with matching category, they meet when the set does the .add and survives the one
+ * added first, because the set does not allow duplicates
  *
- * Anchor: TODO after solving: one sentence, your own image from a world you know, that ties this operation to its mechanism.
+ * Anchor:
+ * When browsing in a store shelf for a red basket ball in boxes that contain more boxes inside, I put the red ball in my
+ * shopping cart and opening another big boxes I find another red basket ball but then I look at the cart I already have
+ * one so I put it away
+ *
+ * Log: docs/log/kt-flatmap-a03-cities-offering-category.md
  */
-fun citiesOffering(airports: List<Airport>, category: AircraftCategory): Set<String> = TODO("Not solved yet")
+fun citiesOffering(airports: List<Airport>, category: AircraftCategory): Set<String> = airports.asSequence()
+    .filter { airport -> airport.fleet.any { category == it.category} }
+    .map { it.city }
+    .toSet()

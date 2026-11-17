@@ -115,6 +115,7 @@ explanation.
 | 2026-11-11 | Kotlin A04 | asSequence + flatMap + firstOrNull laziness | comparison questions only |
 | 2026-11-11 | B02 RegistrationsByCity | groupingBy + flatMapping; bucket created before downstream | two misses, then solved; principle: Decorator |
 | 2026-11-12 | realtime LruCache | LinkedHashMap access order + removeEldestEntry, 25-minute box | partial on the clock, 0 hints; finished off the clock 2026-11-17; principle: Template Method vs Strategy, composition explained after three misses ([log](docs/log/realtime-lru-cache.md)) |
+| 2026-11-17 | Kotlin A03 | `any` on the inner list as short-circuit, `toSet` dedup | first version built two lists per airport, second matched the Java shape ([log](docs/log/kt-flatmap-a03-cities-offering-category.md)) |
 | 2026-11-17 | scaffolding | blocks D (collections) and E (language) added in Java and Kotlin, cheat sheet Collections rows, exercise logs | work mode |
 
 ## Deliverables for October
