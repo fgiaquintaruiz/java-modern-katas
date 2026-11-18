@@ -22,4 +22,9 @@ Browsing a store shelf for a red basketball in boxes that contain more boxes: I 
 
 ## Principle question
 
-Not asked: Kotlin twins get comparison questions only.
+Rule changed the same day at the learner's request: Kotlin twins also get one principle question. Asked: `asSequence()` hands back the same method names over the same data but a different type; which pattern, and how does it differ from the B02 Decorator?
+
+- Answer 1: "no idea". Nudge: is `Sequence` the same interface as `List`?
+- Answer 2: "decorator". Pointed out that Decorator keeps the interface and `Sequence` is not a `List`.
+- Answer 3: "adapter". Right: Adapter changes the interface over the same object, Decorator keeps it and adds behaviour.
+- Marked for cold re-ask: Decorator versus Adapter, by interface kept or changed.
