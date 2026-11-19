@@ -1,6 +1,5 @@
 package com.fgiaquinta.katas.collections;
 
-import java.math.BigDecimal;
 import java.util.ArrayDeque;
 import java.util.Collections;
 import java.util.List;
