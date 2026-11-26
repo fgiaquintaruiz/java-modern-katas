@@ -44,6 +44,12 @@ src/main/kotlin/com/fgiaquinta/katas/kt/
 ├── collections/         Kotlin twins of D01–D10, each with one test aimed at the Kotlin difference
 └── language/            Kotlin twins of E01–E08
 
+python/
+├── pyproject.toml       pytest config; no venv needed, pytest >= 9 on Python 3.12
+├── katas/domain.py      the same charter-airline model as frozen dataclasses and Enums
+├── katas/flatmap/       Python twins of A01–A07, one module and one function per exercise
+└── tests/flatmap/       the Java tests ported one to one, plain assert
+
 docs/
 ├── java-kotlin-cheat-sheet.xlsx   one row per mechanism; yellow columns are the learner's own words
 ├── log/                 one Markdown log per closed exercise: attempts, hints, internals exchange, principle question
@@ -61,6 +67,8 @@ what happens inside the pipeline (laziness, fusion, short-circuiting,
 stateful operations, allocations), not what the code does.
 
 Kotlin twins (`com.fgiaquinta.katas.kt.<block>`) repeat solved Java exercises as top-level functions with the same names, stub `TODO("Not solved yet")` and a ported test; `--tests "com.fgiaquinta.katas.kt.*A01*"` runs the Kotlin one only.
+
+Python twins live in `python/katas/<block>/` with snake_case names (`a01_all_registrations.py`, function `all_registrations`), stub `raise NotImplementedError("Not solved yet")` and a ported pytest test under `python/tests/<block>/`.
 
 ## Build and test
 
@@ -80,6 +88,16 @@ Git Bash:
 ./gradlew test
 ./gradlew test --tests "com.fgiaquinta.katas.streams.flatmap.*"
 ./gradlew test --tests "*A01*"
+```
+
+Python twins, from the `python/` directory:
+
+```powershell
+Set-Location python; python -m pytest -k a01
+```
+
+```bash
+cd python; python -m pytest -k a01
 ```
 
 ## Progress tracking
@@ -118,6 +136,7 @@ explanation.
 | 2026-11-17 | Kotlin A03 | `any` on the inner list as short-circuit, `toSet` dedup | first version built two lists per airport, second matched the Java shape ([log](docs/log/kt-flatmap-a03-cities-offering-category.md)) |
 | 2026-11-17 | scaffolding | blocks D (collections) and E (language) added in Java and Kotlin, cheat sheet Collections rows, exercise logs | work mode |
 | 2026-11-18 | D01 BoardingQueue | ArrayDeque as a stack: push moves the head index, ring buffer, iteration from head gives LIFO | solved alone; subList().reversed() detour reverted; principle: Liskov after one miss ([log](docs/log/collections-d01-boarding-queue.md)) |
+| 2026-11-26 | scaffolding | Python twins of all 46 exercises under python/ (pytest, dataclass domain), Python sheet and Collections column in the cheat sheet; daily order becomes Python, Java, Kotlin twin, principles | work mode |
 
 ## Deliverables for October
 

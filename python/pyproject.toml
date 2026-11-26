@@ -1,0 +1,9 @@
+[project]
+name = "katas-python"
+version = "0.1.0"
+description = "Python twins of the Java katas: same exercises, same charter-airline domain, same tests."
+requires-python = ">=3.12"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
