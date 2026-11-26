@@ -12,25 +12,25 @@ madrid = airport("MAD", "Madrid", "Spain", plane)
 r1 = charter("R1", ana, plane, madrid, madrid, "2024-01-01", "2024-01-02", "30.00")
 
 
-def test_describe_with_scheduled_returns_scheduled_and_charter_id():
+def test_describe_with_scheduled_returns_scheduled_and_charter_id() -> None:
     assert describe(Scheduled(r1)) == "Scheduled R1"
 
 
-def test_describe_with_short_delay_returns_delayed_minutes():
+def test_describe_with_short_delay_returns_delayed_minutes() -> None:
     assert describe(Delayed(15)) == "Delayed 15 min"
     assert describe(Delayed(59)) == "Delayed 59 min"
 
 
-def test_describe_with_delay_from_sixty_minutes_returns_heavily_delayed():
+def test_describe_with_delay_from_sixty_minutes_returns_heavily_delayed() -> None:
     assert describe(Delayed(60)) == "Heavily delayed 60 min"
     assert describe(Delayed(90)) == "Heavily delayed 90 min"
 
 
-def test_describe_with_cancelled_returns_cancelled_and_reason():
+def test_describe_with_cancelled_returns_cancelled_and_reason() -> None:
     assert describe(Cancelled("weather")) == "Cancelled: weather"
 
 
-def test_describe_with_unknown_status_raises_from_the_fallback_case():
+def test_describe_with_unknown_status_raises_from_the_fallback_case() -> None:
     # The union is the closed set; anything outside it must hit the assert_never fallback.
     assert get_args(Status) == (Scheduled, Delayed, Cancelled)
     with pytest.raises(AssertionError):

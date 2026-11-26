@@ -13,7 +13,7 @@ TURBOPROP = EngineType.TURBOPROP
 ELECTRIC = EngineType.ELECTRIC
 
 
-def test_loyalty_models_by_city_with_mixed_membership_excludes_cities_with_only_non_member_charters():
+def test_loyalty_models_by_city_with_mixed_membership_excludes_cities_with_only_non_member_charters() -> None:  # fmt: skip
     loyal = customer("C1", "Ana", "Spain", True)
     non_loyal = customer("C2", "Bea", "Spain", False)
 
@@ -21,7 +21,8 @@ def test_loyalty_models_by_city_with_mixed_membership_excludes_cities_with_only_
     barcelona = airport("BCN", "Barcelona", "Spain")
     sevilla = airport("SEV", "Sevilla", "Spain")
 
-    # The helper derives the model from (category, engine): Tecnam P2012, A320neo, A350-900, ATR 72F, Beta ALIA.
+    # The helper derives the model from (category, engine): Tecnam P2012, A320neo, A350-900,
+    # ATR 72F, Beta ALIA.
     tecnam = aircraft("EC-P12", REGIONAL, PISTON, 11, 1000, "30.00")
     a320neo = aircraft("EC-A32", NARROW_BODY, TURBOFAN, 180, 1200, "35.00")
     a350 = aircraft("EC-A35", WIDE_BODY, TURBOFAN, 300, 2000, "60.00")
@@ -38,15 +39,17 @@ def test_loyalty_models_by_city_with_mixed_membership_excludes_cities_with_only_
 
     result = loyalty_models_by_city(charters)
 
-    # Barcelona's only charter (R4) is by a non-loyalty customer -> must be absent. Keys in ascending order.
+    # Barcelona's only charter (R4) is by a non-loyalty customer -> must be absent. Keys in
+    # ascending order.
     assert list(result.keys()) == ["Madrid", "Sevilla"]
-    # Madrid loyalty models: Tecnam P2012 (R1), A320neo (R2); A350-900 (R3) is non-loyalty, excluded; alphabetical order.
+    # Madrid loyalty models: Tecnam P2012 (R1), A320neo (R2); A350-900 (R3) is non-loyalty,
+    # excluded; alphabetical order.
     assert result["Madrid"] == ["A320neo", "Tecnam P2012"]
     # Sevilla loyalty models: Beta ALIA (R5).
     assert result["Sevilla"] == ["Beta ALIA"]
 
 
-def test_loyalty_models_by_city_with_empty_list_returns_empty_map():
+def test_loyalty_models_by_city_with_empty_list_returns_empty_map() -> None:
     result = loyalty_models_by_city([])
 
     assert result == {}

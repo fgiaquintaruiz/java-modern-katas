@@ -21,6 +21,7 @@ Anchor: TODO: your own image, written by you.
 from katas.domain import Aircraft, AircraftCategory
 
 
-def count_outside_range(fleet: list[Aircraft], from_category: AircraftCategory,
-                        to_category: AircraftCategory) -> dict[AircraftCategory, int]:
+def count_outside_range(
+    fleet: list[Aircraft], from_category: AircraftCategory, to_category: AircraftCategory
+) -> dict[AircraftCategory, int]:
     raise NotImplementedError("Not solved yet")

@@ -9,7 +9,7 @@ PISTON = EngineType.PISTON
 TURBOFAN = EngineType.TURBOFAN
 
 
-def test_count_by_category_with_mixed_categories_counts_each_present_category():
+def test_count_by_category_with_mixed_categories_counts_each_present_category() -> None:
     fleet = [
         aircraft("EC-P01", REGIONAL, PISTON, 11, 1000, "30.00"),
         aircraft("EC-P02", REGIONAL, PISTON, 11, 2000, "32.00"),
@@ -27,7 +27,7 @@ def test_count_by_category_with_mixed_categories_counts_each_present_category():
     assert result == {REGIONAL: 2, NARROW_BODY: 1, WIDE_BODY: 2}
 
 
-def test_count_by_category_with_empty_list_returns_empty_map():
+def test_count_by_category_with_empty_list_returns_empty_map() -> None:
     result = count_by_category([])
 
     assert result == {}

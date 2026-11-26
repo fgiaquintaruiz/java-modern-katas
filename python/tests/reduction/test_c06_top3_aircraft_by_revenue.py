@@ -13,7 +13,7 @@ CUSTOMER = customer("C1", "Alice", "ES", True)
 AIRPORT = airport("MAD", "Madrid", "ES")
 
 
-def test_top3_registrations_by_revenue_with_more_than_three_aircraft_returns_top_three_descending():
+def test_top3_registrations_by_revenue_with_more_than_three_aircraft_returns_top_three_descending() -> None:  # fmt: skip
     v1 = aircraft("EC-AAA", REGIONAL, PISTON, 11, 10_000, "35.00")
     v2 = aircraft("EC-BBB", NARROW_BODY, TURBOFAN, 180, 20_000, "45.00")
     v3 = aircraft("EC-CCC", WIDE_BODY, TURBOFAN, 300, 15_000, "60.00")
@@ -33,11 +33,12 @@ def test_top3_registrations_by_revenue_with_more_than_three_aircraft_returns_top
 
     result = top3_registrations_by_revenue(charters)
 
-    # ranking: EC-BBB (200.00) > EC-AAA (150.00) > EC-CCC (120.00) > EC-DDD (90.00) -> EC-DDD excluded
+    # ranking: EC-BBB (200.00) > EC-AAA (150.00) > EC-CCC (120.00) > EC-DDD (90.00) -> EC-DDD
+    # excluded
     assert result == ["EC-BBB", "EC-AAA", "EC-CCC"]
 
 
-def test_top3_registrations_by_revenue_with_tied_revenue_breaks_tie_by_registration_ascending():
+def test_top3_registrations_by_revenue_with_tied_revenue_breaks_tie_by_registration_ascending() -> None:  # fmt: skip
     lowest = aircraft("EC-ZZZ", REGIONAL, PISTON, 11, 10_000, "35.00")
     tied_a = aircraft("EC-AAA", NARROW_BODY, TURBOFAN, 180, 20_000, "45.00")
     tied_b = aircraft("EC-BBB", WIDE_BODY, TURBOFAN, 300, 15_000, "60.00")
@@ -57,7 +58,7 @@ def test_top3_registrations_by_revenue_with_tied_revenue_breaks_tie_by_registrat
     assert result == ["EC-AAA", "EC-BBB", "EC-ZZZ"]
 
 
-def test_top3_registrations_by_revenue_with_fewer_than_three_aircraft_returns_all_of_them():
+def test_top3_registrations_by_revenue_with_fewer_than_three_aircraft_returns_all_of_them() -> None:
     v1 = aircraft("EC-AAA", REGIONAL, PISTON, 11, 10_000, "35.00")
     v2 = aircraft("EC-BBB", NARROW_BODY, TURBOFAN, 180, 20_000, "45.00")
 

@@ -8,7 +8,7 @@ PISTON = EngineType.PISTON
 TURBOFAN = EngineType.TURBOFAN
 
 
-def test_rate_range_per_category_with_multiple_aircraft_per_category_computes_min_and_max():
+def test_rate_range_per_category_with_multiple_aircraft_per_category_computes_min_and_max() -> None:
     fleet = [
         aircraft("EC-R01", REGIONAL, PISTON, 11, 1000, "30.00"),
         aircraft("EC-R02", REGIONAL, PISTON, 11, 1100, "45.00"),
@@ -27,7 +27,7 @@ def test_rate_range_per_category_with_multiple_aircraft_per_category_computes_mi
     assert len(result) == 2
 
 
-def test_rate_range_per_category_with_empty_list_returns_empty_map():
+def test_rate_range_per_category_with_empty_list_returns_empty_map() -> None:
     result = rate_range_per_category([])
 
     assert result == {}

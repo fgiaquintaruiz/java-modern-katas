@@ -20,5 +20,7 @@ from decimal import Decimal
 from katas.domain import AircraftCategory, Charter
 
 
-def revenue_by_country_and_category(charters: list[Charter]) -> dict[str, dict[AircraftCategory, Decimal]]:
+def revenue_by_country_and_category(
+    charters: list[Charter],
+) -> dict[str, dict[AircraftCategory, Decimal]]:
     raise NotImplementedError("Not solved yet")

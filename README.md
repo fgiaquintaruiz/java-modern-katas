@@ -45,7 +45,7 @@ src/main/kotlin/com/fgiaquinta/katas/kt/
 └── language/            Kotlin twins of E01–E08
 
 python/
-├── pyproject.toml       pytest config; no venv needed, pytest >= 9 on Python 3.12
+├── pyproject.toml       Python 3.15 through uv: pytest, ruff and mypy config; `uv sync` creates .venv
 ├── katas/domain.py      the same charter-airline model as frozen dataclasses and Enums
 ├── katas/flatmap/       Python twins of A01–A07, one module and one function per exercise
 └── tests/flatmap/       the Java tests ported one to one, plain assert
@@ -90,14 +90,14 @@ Git Bash:
 ./gradlew test --tests "*A01*"
 ```
 
-Python twins, from the `python/` directory:
-
-```powershell
-Set-Location python; python -m pytest -k a01
-```
+Python twins, from the `python/` directory, same lines in PowerShell and Git Bash
+(`uv sync` once, it installs CPython 3.15 and the dev tools into `.venv`):
 
 ```bash
-cd python; python -m pytest -k a01
+cd python; uv sync
+uv run pytest -k a01
+uv run ruff check .
+uv run mypy
 ```
 
 ## Progress tracking

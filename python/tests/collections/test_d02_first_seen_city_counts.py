@@ -7,7 +7,7 @@ a2 = aircraft("EC-002", AircraftCategory.NARROW_BODY, EngineType.TURBOFAN, 180, 
 a3 = aircraft("EC-003", AircraftCategory.WIDE_BODY, EngineType.TURBOFAN, 300, 2000, "60.00")
 
 
-def test_aircraft_count_by_city_with_unsorted_cities_keeps_first_seen_order():
+def test_aircraft_count_by_city_with_unsorted_cities_keeps_first_seen_order() -> None:
     airports = [
         airport("SEV", "Sevilla", "Spain", a1),
         airport("MAD", "Madrid", "Spain", a2, a3),
@@ -20,7 +20,7 @@ def test_aircraft_count_by_city_with_unsorted_cities_keeps_first_seen_order():
     assert list(result.items()) == [("Sevilla", 1), ("Madrid", 2), ("Barcelona", 1)]
 
 
-def test_aircraft_count_by_city_with_repeated_city_merges_counts_at_first_position():
+def test_aircraft_count_by_city_with_repeated_city_merges_counts_at_first_position() -> None:
     airports = [
         airport("MAD", "Madrid", "Spain", a1),
         airport("SEV", "Sevilla", "Spain", a2),
@@ -32,11 +32,11 @@ def test_aircraft_count_by_city_with_repeated_city_merges_counts_at_first_positi
     assert list(result.items()) == [("Madrid", 3), ("Sevilla", 1)]
 
 
-def test_aircraft_count_by_city_with_empty_fleet_keeps_city_with_zero():
+def test_aircraft_count_by_city_with_empty_fleet_keeps_city_with_zero() -> None:
     airports = [airport("VLC", "Valencia", "Spain")]
 
     assert list(aircraft_count_by_city(airports).items()) == [("Valencia", 0)]
 
 
-def test_aircraft_count_by_city_with_empty_list_returns_empty_dict():
+def test_aircraft_count_by_city_with_empty_list_returns_empty_dict() -> None:
     assert aircraft_count_by_city([]) == {}

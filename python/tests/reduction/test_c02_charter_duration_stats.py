@@ -6,7 +6,7 @@ REGIONAL = AircraftCategory.REGIONAL
 PISTON = EngineType.PISTON
 
 
-def test_duration_stats_with_multiple_charters_computes_all_statistics():
+def test_duration_stats_with_multiple_charters_computes_all_statistics() -> None:
     alice = customer("C1", "Alice", "ES", True)
     plane = aircraft("EC-AAA", REGIONAL, PISTON, 11, 10_000, "35.00")
     madrid = airport("MAD", "Madrid", "ES")
@@ -32,7 +32,7 @@ def test_duration_stats_with_multiple_charters_computes_all_statistics():
     assert stats.average == 3.75
 
 
-def test_duration_stats_with_empty_list_returns_jdk_sentinel_values():
+def test_duration_stats_with_empty_list_returns_jdk_sentinel_values() -> None:
     stats = duration_stats([])
 
     assert stats.count == 0

@@ -2,8 +2,48 @@
 name = "katas-python"
 version = "0.1.0"
 description = "Python twins of the Java katas: same exercises, same charter-airline domain, same tests."
-requires-python = ">=3.12"
+requires-python = ">=3.15"
+
+[dependency-groups]
+dev = ["pytest>=9", "ruff", "mypy"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["."]
+
+[tool.ruff]
+line-length = 100
+target-version = "py315"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "RUF"]
+ignore = []
+
+[tool.ruff.lint.per-file-ignores]
+# Test names are the spec and run long by design; the formatter still wraps the code.
+"tests/**/test_*.py" = ["E501"]
+# One-line docstrings that must stay as written.
+"katas/collections/__init__.py" = ["E501"]
+"katas/methodref/__init__.py" = ["E501"]
+"katas/language/e01_final_three_ways.py" = ["E501"]
+
+[tool.ruff.format]
+# defaults
+
+[tool.mypy]
+python_version = "3.15"
+strict = true
+files = ["katas", "tests"]
+warn_unreachable = true
+
+# E01: the test pokes at a Holder shape and a CAPACITY constant that the exercise leaves to the
+# learner, then rebinds a Final name on purpose.
+[[tool.mypy.overrides]]
+module = "tests.language.test_e01_final_three_ways"
+disable_error_code = ["attr-defined", "misc"]
+
+# E05: the test compares Quote instances before order=True exists and reads __dataclass_params__,
+# which typeshed does not expose.
+[[tool.mypy.overrides]]
+module = "tests.language.test_e05_record_internals"
+disable_error_code = ["attr-defined", "operator", "type-var"]

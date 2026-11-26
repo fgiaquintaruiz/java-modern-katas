@@ -10,10 +10,12 @@ PISTON = EngineType.PISTON
 
 def _scale(value: Decimal) -> int:
     """Number of digits after the decimal point, the twin of BigDecimal.scale()."""
-    return -value.as_tuple().exponent
+    exponent = value.as_tuple().exponent
+    assert isinstance(exponent, int)  # finite Decimal, never NaN or Infinity here
+    return -exponent
 
 
-def test_weighted_average_price_per_day_with_non_exact_division_rounds_half_up_to_scale_2():
+def test_weighted_average_price_per_day_with_non_exact_division_rounds_half_up_to_scale_2() -> None:
     alice = customer("C1", "Alice", "ES", True)
     plane = aircraft("EC-AAA", REGIONAL, PISTON, 11, 10_000, "35.00")
     madrid = airport("MAD", "Madrid", "ES")
@@ -33,7 +35,7 @@ def test_weighted_average_price_per_day_with_non_exact_division_rounds_half_up_t
     assert _scale(result) == 2
 
 
-def test_weighted_average_price_per_day_with_empty_list_returns_zero_at_scale_2():
+def test_weighted_average_price_per_day_with_empty_list_returns_zero_at_scale_2() -> None:
     result = weighted_average_price_per_day([])
 
     assert result == Decimal(0)

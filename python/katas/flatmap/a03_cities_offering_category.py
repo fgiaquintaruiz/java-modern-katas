@@ -15,7 +15,7 @@ Internals: TODO: fill after solving.
 Anchor: TODO: your own image, written by you.
 """
 
-from katas.domain import Airport, AircraftCategory
+from katas.domain import AircraftCategory, Airport
 
 
 def cities_offering(airports: list[Airport], category: AircraftCategory) -> set[str]:

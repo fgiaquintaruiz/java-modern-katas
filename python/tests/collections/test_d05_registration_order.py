@@ -16,11 +16,11 @@ fleet = [
 ]
 
 
-def test_ordered_registrations_with_mixed_lengths_orders_by_length_then_alphabetically():
+def test_ordered_registrations_with_mixed_lengths_orders_by_length_then_alphabetically() -> None:
     assert ordered_registrations(fleet) == ["EC-AL", "EC-ALI", "EC-ATF", "EC-P12", "EC-A350"]
 
 
-def test_ordered_registrations_navigation_follows_comparator_order():
+def test_ordered_registrations_navigation_follows_comparator_order() -> None:
     result = ordered_registrations(fleet)
 
     # first / last / higher / lower of a NavigableSet, expressed over the sorted list.
@@ -32,7 +32,7 @@ def test_ordered_registrations_navigation_follows_comparator_order():
     assert result.index("EC-AL") == 0
 
 
-def test_ordered_registrations_with_case_variant_collapses_to_first_inserted():
+def test_ordered_registrations_with_case_variant_collapses_to_first_inserted() -> None:
     with_variant = [
         with_registration("EC-ATF"),
         with_registration("ec-atf"),
@@ -42,10 +42,10 @@ def test_ordered_registrations_with_case_variant_collapses_to_first_inserted():
     result = ordered_registrations(with_variant)
 
     assert result == ["EC-AL", "EC-ATF"]
-    # The variant is "contained" in the comparator's sense: exactly one element matches it ignoring case,
-    # and that element is the first inserted spelling.
+    # The variant is "contained" in the comparator's sense: exactly one element matches it
+    # ignoring case, and that element is the first inserted spelling.
     assert [r for r in result if r.casefold() == "ec-atf"] == ["EC-ATF"]
 
 
-def test_ordered_registrations_with_empty_fleet_returns_empty_list():
+def test_ordered_registrations_with_empty_fleet_returns_empty_list() -> None:
     assert ordered_registrations([]) == []

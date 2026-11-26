@@ -10,17 +10,53 @@ TURBOFAN = EngineType.TURBOFAN
 CUSTOMER = customer("C1", "Ana", "Spain", True)
 
 
-def test_revenue_by_country_and_category_with_multiple_countries_and_categories_sums_each_bucket():
+def test_revenue_by_country_and_category_with_multiple_countries_and_categories_sums_each_bucket() -> None:  # fmt: skip
     regional = aircraft("EC-P01", REGIONAL, PISTON, 11, 1000, "30.00")
     wide_body = aircraft("EC-P02", WIDE_BODY, TURBOFAN, 300, 2000, "60.00")
     spain_airport = airport("MAD", "Madrid", "Spain", regional, wide_body)
     france_airport = airport("PAR", "Paris", "France", regional)
 
     charters = [
-        charter("R1", CUSTOMER, regional, spain_airport, spain_airport, "2024-01-01", "2024-01-03", "100.00"),
-        charter("R2", CUSTOMER, regional, spain_airport, spain_airport, "2024-01-05", "2024-01-07", "50.00"),
-        charter("R3", CUSTOMER, wide_body, spain_airport, spain_airport, "2024-02-01", "2024-02-04", "200.00"),
-        charter("R4", CUSTOMER, regional, france_airport, france_airport, "2024-03-01", "2024-03-02", "80.00"),
+        charter(
+            "R1",
+            CUSTOMER,
+            regional,
+            spain_airport,
+            spain_airport,
+            "2024-01-01",
+            "2024-01-03",
+            "100.00",
+        ),
+        charter(
+            "R2",
+            CUSTOMER,
+            regional,
+            spain_airport,
+            spain_airport,
+            "2024-01-05",
+            "2024-01-07",
+            "50.00",
+        ),
+        charter(
+            "R3",
+            CUSTOMER,
+            wide_body,
+            spain_airport,
+            spain_airport,
+            "2024-02-01",
+            "2024-02-04",
+            "200.00",
+        ),
+        charter(
+            "R4",
+            CUSTOMER,
+            regional,
+            france_airport,
+            france_airport,
+            "2024-03-01",
+            "2024-03-02",
+            "80.00",
+        ),
     ]
 
     result = revenue_by_country_and_category(charters)
@@ -36,7 +72,7 @@ def test_revenue_by_country_and_category_with_multiple_countries_and_categories_
     assert result["France"][REGIONAL] == money("80.00")
 
 
-def test_revenue_by_country_and_category_with_empty_list_returns_empty_map():
+def test_revenue_by_country_and_category_with_empty_list_returns_empty_map() -> None:
     result = revenue_by_country_and_category([])
 
     assert result == {}

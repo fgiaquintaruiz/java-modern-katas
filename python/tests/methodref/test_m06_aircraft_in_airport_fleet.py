@@ -8,7 +8,7 @@ PISTON = EngineType.PISTON
 TURBOFAN = EngineType.TURBOFAN
 
 
-def test_in_fleet_with_mixed_candidates_keeps_only_fleet_aircraft_in_input_order():
+def test_in_fleet_with_mixed_candidates_keeps_only_fleet_aircraft_in_input_order() -> None:
     # Only wide_body and regional are in the Madrid fleet; outsider is not.
     wide_body = aircraft("EC-AAA", WIDE_BODY, TURBOFAN, 300, 10_000, "60.00")
     regional = aircraft("EC-BBB", REGIONAL, PISTON, 11, 5_000, "30.00")
@@ -18,7 +18,7 @@ def test_in_fleet_with_mixed_candidates_keeps_only_fleet_aircraft_in_input_order
     assert in_fleet([regional, outsider, wide_body], madrid) == [regional, wide_body]
 
 
-def test_in_fleet_with_empty_fleet_returns_empty_list():
+def test_in_fleet_with_empty_fleet_returns_empty_list() -> None:
     wide_body = aircraft("EC-AAA", WIDE_BODY, TURBOFAN, 300, 10_000, "60.00")
     empty = airport("MAD", "Madrid", "Spain")
 

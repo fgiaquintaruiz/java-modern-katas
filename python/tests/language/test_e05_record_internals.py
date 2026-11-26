@@ -6,20 +6,20 @@ import pytest
 from katas.language.e05_record_internals import quote
 
 
-def test_quote_with_negative_price_raises_value_error():
+def test_quote_with_negative_price_raises_value_error() -> None:
     with pytest.raises(ValueError):
         quote("MAD-BCN", Decimal("-0.01"))
 
 
-def test_quote_with_zero_price_is_accepted():
+def test_quote_with_zero_price_is_accepted() -> None:
     assert quote("MAD-BCN", Decimal("0")).price == 0
 
 
-def test_quote_with_padded_route_stores_stripped_route():
+def test_quote_with_padded_route_stores_stripped_route() -> None:
     assert quote("  MAD-BCN ", Decimal("100.00")).route == "MAD-BCN"
 
 
-def test_quote_with_equal_fields_are_equal_with_same_hash():
+def test_quote_with_equal_fields_are_equal_with_same_hash() -> None:
     first = quote("MAD-BCN", Decimal("100.00"))
     second = quote("MAD-BCN", Decimal("100.00"))
 
@@ -29,11 +29,14 @@ def test_quote_with_equal_fields_are_equal_with_same_hash():
     assert first != quote("MAD-SEV", Decimal("100.00"))
 
 
-def test_quote_repr_lists_fields_by_name():
-    assert repr(quote("MAD-BCN", Decimal("100.00"))) == "Quote(route='MAD-BCN', price=Decimal('100.00'))"
+def test_quote_repr_lists_fields_by_name() -> None:
+    assert (
+        repr(quote("MAD-BCN", Decimal("100.00")))
+        == "Quote(route='MAD-BCN', price=Decimal('100.00'))"
+    )
 
 
-def test_quote_type_is_frozen_dataclass():
+def test_quote_type_is_frozen_dataclass() -> None:
     q = quote("MAD-BCN", Decimal("10"))
 
     assert is_dataclass(q)
@@ -42,7 +45,7 @@ def test_quote_type_is_frozen_dataclass():
         q.route = "MAD-SEV"
 
 
-def test_quote_with_order_compares_field_by_field_in_declaration_order():
+def test_quote_with_order_compares_field_by_field_in_declaration_order() -> None:
     cheap_sev = quote("MAD-SEV", Decimal("50.00"))
     dear_bcn = quote("MAD-BCN", Decimal("100.00"))
     cheaper_bcn = quote("MAD-BCN", Decimal("90.00"))

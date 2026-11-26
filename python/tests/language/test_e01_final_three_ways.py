@@ -6,7 +6,7 @@ import katas.language.e01_final_three_ways as e01
 from katas.language.e01_final_three_ways import hold
 
 
-def test_hold_with_frozen_field_freezes_reference_not_contents():
+def test_hold_with_frozen_field_freezes_reference_not_contents() -> None:
     source = ["EC-A"]
     holder = hold(source)
 
@@ -20,7 +20,7 @@ def test_hold_with_frozen_field_freezes_reference_not_contents():
     assert type(holder).__dataclass_params__.frozen is True
 
 
-def test_hold_module_declares_capacity_as_final_but_runtime_does_not_enforce_it():
+def test_hold_module_declares_capacity_as_final_but_runtime_does_not_enforce_it() -> None:
     hold([])
 
     hints = get_type_hints(e01)
@@ -31,12 +31,12 @@ def test_hold_module_declares_capacity_as_final_but_runtime_does_not_enforce_it(
     original = e01.CAPACITY
     try:
         e01.CAPACITY = original + 1
-        assert e01.CAPACITY == original + 1
+        assert e01.CAPACITY == original + 1  # noqa: SIM300
     finally:
         e01.CAPACITY = original
 
 
-def test_snapshot_returns_tuple_copy_that_neither_grows_nor_follows_the_list():
+def test_snapshot_returns_tuple_copy_that_neither_grows_nor_follows_the_list() -> None:
     holder = hold(["EC-A"])
 
     snapshot = holder.snapshot()

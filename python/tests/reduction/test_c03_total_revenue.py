@@ -8,7 +8,7 @@ REGIONAL = AircraftCategory.REGIONAL
 PISTON = EngineType.PISTON
 
 
-def test_total_revenue_with_multiple_charters_sums_all_total_prices():
+def test_total_revenue_with_multiple_charters_sums_all_total_prices() -> None:
     alice = customer("C1", "Alice", "ES", True)
     plane = aircraft("EC-AAA", REGIONAL, PISTON, 11, 10_000, "35.00")
     madrid = airport("MAD", "Madrid", "ES")
@@ -25,7 +25,7 @@ def test_total_revenue_with_multiple_charters_sums_all_total_prices():
     assert result == money("245.75")
 
 
-def test_total_revenue_with_empty_list_returns_zero():
+def test_total_revenue_with_empty_list_returns_zero() -> None:
     result = total_revenue([])
 
     assert result == Decimal(0)

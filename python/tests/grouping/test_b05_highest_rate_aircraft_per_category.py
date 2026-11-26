@@ -8,7 +8,7 @@ PISTON = EngineType.PISTON
 TURBOFAN = EngineType.TURBOFAN
 
 
-def test_highest_rate_per_category_with_ties_and_distinct_rates_picks_highest_keeping_first_on_tie():
+def test_highest_rate_per_category_with_ties_and_distinct_rates_picks_highest_keeping_first_on_tie() -> None:  # fmt: skip
     regional1 = aircraft("EC-R01", REGIONAL, PISTON, 11, 1000, "30.00")
     regional2 = aircraft("EC-R02", REGIONAL, PISTON, 11, 1200, "45.00")
     wide_body1 = aircraft("EC-W01", WIDE_BODY, TURBOFAN, 300, 2000, "90.00")
@@ -25,7 +25,7 @@ def test_highest_rate_per_category_with_ties_and_distinct_rates_picks_highest_ke
     assert len(result) == 2
 
 
-def test_highest_rate_per_category_with_empty_list_returns_empty_map():
+def test_highest_rate_per_category_with_empty_list_returns_empty_map() -> None:
     result = highest_rate_per_category([])
 
     assert result == {}

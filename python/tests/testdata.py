@@ -15,11 +15,26 @@ def money(amount: str) -> Decimal:
     return Decimal(amount).quantize(Decimal("0.01"))
 
 
-def aircraft(registration: str, category: AircraftCategory, engine: EngineType, seats: int,
-             flight_hours: int, daily_rate: str, *features: str) -> Aircraft:
+def aircraft(
+    registration: str,
+    category: AircraftCategory,
+    engine: EngineType,
+    seats: int,
+    flight_hours: int,
+    daily_rate: str,
+    *features: str,
+) -> Aircraft:
     """Builds an aircraft whose model is a real type matching the (category, engine) pair."""
-    return Aircraft(registration, _realistic_model(category, engine), category, engine, seats, flight_hours,
-                    money(daily_rate), list(features))
+    return Aircraft(
+        registration,
+        _realistic_model(category, engine),
+        category,
+        engine,
+        seats,
+        flight_hours,
+        money(daily_rate),
+        list(features),
+    )
 
 
 def _realistic_model(category: AircraftCategory, engine: EngineType) -> str:
@@ -73,8 +88,25 @@ def extra(name: str, price: str) -> Extra:
     return Extra(name, money(price))
 
 
-def charter(id: str, customer: Customer, aircraft: Aircraft, origin: Airport, destination: Airport,
-            start_iso: str, end_iso: str, total_price: str, *extras: Extra) -> Charter:
-    return Charter(id, customer, aircraft, origin, destination,
-                   date.fromisoformat(start_iso), date.fromisoformat(end_iso),
-                   money(total_price), list(extras))
+def charter(
+    id: str,
+    customer: Customer,
+    aircraft: Aircraft,
+    origin: Airport,
+    destination: Airport,
+    start_iso: str,
+    end_iso: str,
+    total_price: str,
+    *extras: Extra,
+) -> Charter:
+    return Charter(
+        id,
+        customer,
+        aircraft,
+        origin,
+        destination,
+        date.fromisoformat(start_iso),
+        date.fromisoformat(end_iso),
+        money(total_price),
+        list(extras),
+    )

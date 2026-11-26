@@ -20,14 +20,14 @@ def schedule() -> dict[time, Charter]:
     return {time(18, 45): r3, time(8, 0): r1, time(12, 30): r2}
 
 
-def test_neighbours_with_time_between_departures_returns_previous_and_next():
+def test_neighbours_with_time_between_departures_returns_previous_and_next() -> None:
     result = neighbours(schedule(), time(10, 0))
 
     assert result.previous == r1
     assert result.next == r2
 
 
-def test_neighbours_with_time_equal_to_departure_returns_that_departure_as_next():
+def test_neighbours_with_time_equal_to_departure_returns_that_departure_as_next() -> None:
     # Next is at-or-after, previous is strictly before.
     result = neighbours(schedule(), time(12, 30))
 
@@ -35,21 +35,21 @@ def test_neighbours_with_time_equal_to_departure_returns_that_departure_as_next(
     assert result.previous == r1
 
 
-def test_neighbours_with_time_before_first_departure_returns_empty_previous():
+def test_neighbours_with_time_before_first_departure_returns_empty_previous() -> None:
     result = neighbours(schedule(), time(7, 0))
 
     assert result.previous is None
     assert result.next == r1
 
 
-def test_neighbours_with_time_after_last_departure_returns_empty_next():
+def test_neighbours_with_time_after_last_departure_returns_empty_next() -> None:
     result = neighbours(schedule(), time(19, 0))
 
     assert result.next is None
     assert result.previous == r3
 
 
-def test_neighbours_with_empty_schedule_returns_both_empty():
+def test_neighbours_with_empty_schedule_returns_both_empty() -> None:
     result = neighbours({}, NOON)
 
     assert result.previous is None

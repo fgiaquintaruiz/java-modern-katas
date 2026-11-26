@@ -10,13 +10,21 @@ AIRCRAFT = aircraft("EC-P01", REGIONAL, PISTON, 11, 1000, "30.00")
 AIRPORT = airport("MAD", "Madrid", "Spain", AIRCRAFT)
 
 
-def test_average_price_by_long_charter_with_mixed_durations_averages_each_partition_separately():
+def test_average_price_by_long_charter_with_mixed_durations_averages_each_partition_separately() -> None:  # fmt: skip
     charters = [
         # days() = end - start, end exclusive
-        charter("R1", CUSTOMER, AIRCRAFT, AIRPORT, AIRPORT, "2024-01-01", "2024-01-04", "120.00"),  # 3 days
-        charter("R2", CUSTOMER, AIRCRAFT, AIRPORT, AIRPORT, "2024-01-01", "2024-01-02", "50.00"),   # 1 day
-        charter("R3", CUSTOMER, AIRCRAFT, AIRPORT, AIRPORT, "2024-01-01", "2024-01-06", "200.00"),  # 5 days
-        charter("R4", CUSTOMER, AIRCRAFT, AIRPORT, AIRPORT, "2024-01-01", "2024-01-03", "80.00"),   # 2 days
+        charter(
+            "R1", CUSTOMER, AIRCRAFT, AIRPORT, AIRPORT, "2024-01-01", "2024-01-04", "120.00"
+        ),  # 3 days
+        charter(
+            "R2", CUSTOMER, AIRCRAFT, AIRPORT, AIRPORT, "2024-01-01", "2024-01-02", "50.00"
+        ),  # 1 day
+        charter(
+            "R3", CUSTOMER, AIRCRAFT, AIRPORT, AIRPORT, "2024-01-01", "2024-01-06", "200.00"
+        ),  # 5 days
+        charter(
+            "R4", CUSTOMER, AIRCRAFT, AIRPORT, AIRPORT, "2024-01-01", "2024-01-03", "80.00"
+        ),  # 2 days
     ]
 
     result = average_price_by_long_charter(charters, 3)
@@ -27,7 +35,7 @@ def test_average_price_by_long_charter_with_mixed_durations_averages_each_partit
     assert result[False] == 65.0
 
 
-def test_average_price_by_long_charter_with_empty_list_returns_zero_average_for_both_partitions():
+def test_average_price_by_long_charter_with_empty_list_returns_zero_average_for_both_partitions() -> None:  # fmt: skip
     result = average_price_by_long_charter([], 3)
 
     assert result == {True: 0.0, False: 0.0}

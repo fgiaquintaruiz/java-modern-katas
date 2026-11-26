@@ -10,7 +10,7 @@ PISTON = EngineType.PISTON
 TURBOFAN = EngineType.TURBOFAN
 
 
-def test_total_flight_hours_with_multiple_aircraft_sums_all_flight_hours():
+def test_total_flight_hours_with_multiple_aircraft_sums_all_flight_hours() -> None:
     fleet = [
         aircraft("EC-AAA", REGIONAL, PISTON, 11, 10_000, "35.00"),
         aircraft("EC-BBB", NARROW_BODY, TURBOFAN, 180, 25_000, "40.00"),
@@ -24,7 +24,7 @@ def test_total_flight_hours_with_multiple_aircraft_sums_all_flight_hours():
     assert result == 100_000
 
 
-def test_total_flight_hours_with_empty_list_returns_zero():
+def test_total_flight_hours_with_empty_list_returns_zero() -> None:
     result = total_flight_hours([])
 
     assert result == 0

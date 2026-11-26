@@ -16,28 +16,33 @@ def priced(charter_id: str, price: str) -> Charter:
 
 # Descending prices: pushing them in this order leaves the heap list as 10, 20, 40, 50, 30.
 def descending() -> list[Charter]:
-    return [priced("R50", "50.00"), priced("R40", "40.00"), priced("R30", "30.00"),
-            priced("R20", "20.00"), priced("R10", "10.00")]
+    return [
+        priced("R50", "50.00"),
+        priced("R40", "40.00"),
+        priced("R30", "30.00"),
+        priced("R20", "20.00"),
+        priced("R10", "10.00"),
+    ]
 
 
-def test_cheapest_with_k_smaller_than_size_polls_k_cheapest_in_price_order():
+def test_cheapest_with_k_smaller_than_size_polls_k_cheapest_in_price_order() -> None:
     result = cheapest(descending(), 3)
 
     assert [c.id for c in result] == ["R10", "R20", "R30"]
 
 
-def test_cheapest_with_k_larger_than_size_holds_all():
+def test_cheapest_with_k_larger_than_size_holds_all() -> None:
     result = cheapest(descending(), 10)
 
     assert len(result) == 5
     assert result[0].id == "R10"
 
 
-def test_cheapest_with_empty_list_returns_empty_list():
+def test_cheapest_with_empty_list_returns_empty_list() -> None:
     assert cheapest([], 3) == []
 
 
-def test_heapq_iteration_versus_popping_only_popping_is_sorted():
+def test_heapq_iteration_versus_popping_only_popping_is_sorted() -> None:
     # Demonstration: iterating a heap is not sorted, popping it is.
     heap: list[Decimal] = []
     for c in descending():

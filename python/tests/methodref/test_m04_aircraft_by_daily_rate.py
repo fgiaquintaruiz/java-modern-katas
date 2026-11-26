@@ -8,7 +8,7 @@ PISTON = EngineType.PISTON
 TURBOFAN = EngineType.TURBOFAN
 
 
-def test_sorted_by_daily_rate_with_unsorted_aircraft_returns_ascending_by_rate():
+def test_sorted_by_daily_rate_with_unsorted_aircraft_returns_ascending_by_rate() -> None:
     # 30.00 < 45.50 < 60.00.
     wide_body = aircraft("EC-AAA", WIDE_BODY, TURBOFAN, 300, 10_000, "60.00")
     regional = aircraft("EC-BBB", REGIONAL, PISTON, 11, 5_000, "30.00")
@@ -17,7 +17,7 @@ def test_sorted_by_daily_rate_with_unsorted_aircraft_returns_ascending_by_rate()
     assert sorted_by_daily_rate([wide_body, regional, mid]) == [regional, mid, wide_body]
 
 
-def test_sorted_by_daily_rate_does_not_modify_input():
+def test_sorted_by_daily_rate_does_not_modify_input() -> None:
     wide_body = aircraft("EC-AAA", WIDE_BODY, TURBOFAN, 300, 10_000, "60.00")
     regional = aircraft("EC-BBB", REGIONAL, PISTON, 11, 5_000, "30.00")
     source = [wide_body, regional]
@@ -27,5 +27,5 @@ def test_sorted_by_daily_rate_does_not_modify_input():
     assert source == [wide_body, regional]
 
 
-def test_sorted_by_daily_rate_with_empty_list_returns_empty_list():
+def test_sorted_by_daily_rate_with_empty_list_returns_empty_list() -> None:
     assert sorted_by_daily_rate([]) == []

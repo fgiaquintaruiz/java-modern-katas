@@ -16,9 +16,9 @@ def mutable_list() -> list[Charter]:
     return [one_day, two_days, three_days, one_day_again]
 
 
-def test_for_each_removal_with_adjacent_matches_silently_skips_one():
-    # Demonstration: Python raises nothing; removing the current element shifts the next one into its
-    # index, so the iterator steps over it and one_day_again survives.
+def test_for_each_removal_with_adjacent_matches_silently_skips_one() -> None:
+    # Demonstration: Python raises nothing; removing the current element shifts the next one
+    # into its index, so the iterator steps over it and one_day_again survives.
     charters = [one_day, one_day_again, three_days]
 
     for c in charters:
@@ -28,31 +28,32 @@ def test_for_each_removal_with_adjacent_matches_silently_skips_one():
     assert charters == [one_day_again, three_days]
 
 
-def test_remove_shorter_than_with_mixed_durations_removes_only_shorter_ones():
+def test_remove_shorter_than_with_mixed_durations_removes_only_shorter_ones() -> None:
     charters = mutable_list()
 
     result = remove_shorter_than(charters, 2)
 
-    # A comprehension would return a new list: the same instance proves the removal happened in place.
+    # A comprehension would return a new list: the same instance proves the removal happened
+    # in place.
     assert result is charters
     assert result == [two_days, three_days]
 
 
-def test_remove_shorter_than_with_adjacent_matches_removes_all():
+def test_remove_shorter_than_with_adjacent_matches_removes_all() -> None:
     charters = [one_day, one_day_again, three_days]
 
     assert remove_shorter_than(charters, 2) == [three_days]
 
 
-def test_remove_shorter_than_with_no_match_leaves_list_unchanged():
+def test_remove_shorter_than_with_no_match_leaves_list_unchanged() -> None:
     charters = mutable_list()
 
     assert len(remove_shorter_than(charters, 1)) == 4
 
 
-def test_remove_shorter_than_with_all_matching_returns_empty_list():
+def test_remove_shorter_than_with_all_matching_returns_empty_list() -> None:
     assert remove_shorter_than(mutable_list(), 10) == []
 
 
-def test_remove_shorter_than_with_empty_list_returns_empty_list():
+def test_remove_shorter_than_with_empty_list_returns_empty_list() -> None:
     assert remove_shorter_than([], 2) == []
